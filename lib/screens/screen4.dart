@@ -45,13 +45,19 @@ class Screen4 extends StatelessWidget {
           Divider(),
            ...cats
               .map(
-                (cat) => ListTile(
-                  leading: const Icon(Icons.pets),
-                  title: Text(cat),
-                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                  tileColor: Colors.blue,
-                  textColor: Colors.white,
-                ),
+                (cat) {
+                  return ListTile(
+                    leading: const Icon(Icons.pets),
+                    title: Text(cat),
+                    subtitle: Text('Gatito problemático'),
+                    trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                    tileColor: Colors.blue,
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                  ),
+                );
+                }
               ),
 
         ],
