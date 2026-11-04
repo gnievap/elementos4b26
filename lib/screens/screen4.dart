@@ -3,24 +3,22 @@ import 'package:flutter/material.dart';
 class Screen4 extends StatelessWidget {
   const Screen4({super.key});
 
+  final Map<String, String> perros = const {
+    'Ginger': 'assets/imgs/ginger.jpg',
+    'KC': 'assets/imgs/KC.jpg',
+    'Blackie': 'assets/imgs/blackie.jpg',
+    'Nicky': 'assets/imgs/nicky.jpg',
+    'Naoisha': 'assets/imgs/naoisha.jpg',
+  };
+
+  final Map<String, String> gatos = const {
+    'Moji': 'assets/imgs/moji.jpg',
+    'Moka': 'assets/imgs/moka.jpg',
+    'Felix': 'assets/imgs/felix.jpg',
+  };
+
   // hardcodear
-  final dogs = const [
-    'Ginger', 
-    'KC',  
-    'Blackie', 
-    'Nicky', 
-    'Candy',
-    'Dobbie',
-    'Naoisha',
-    ];
-
-  final cats = const [
-    'Moji', 
-    'Moka', 
-    'Felix',
-    'Pikachu',
-    'Shadow'];
-
+  final cats = const ['Moji', 'Moka', 'Felix', 'Pikachu', 'Shadow'];
 
   @override
   Widget build(BuildContext context) {
@@ -31,59 +29,49 @@ class Screen4 extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ...dogs
-              .map(
-                (dog) => ListTile(
-                  leading: const Icon(Icons.pets),
-                  title: Text(dog),
-                  subtitle: Text('un lindo perrito'),
-                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                  tileColor: Colors.purple,
-                  textColor: Colors.white,
-                ),
-              ),
+          ...perros.entries.map((perro) {
+            return crearTile(
+              perro.key,
+              perro.value,
+              Colors.purple,
+              Colors.white,
+            );
+          }),
           Divider(),
-           ...cats
-              .map(
-                (cat) {
-                  return ListTile(
-                    leading: const Icon(Icons.pets),
-                    title: Text(cat),
-                    subtitle: Text('Gatito problemático'),
-                    trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                    tileColor: Colors.blue,
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                  ),
-                );
-                }
+          ...cats.map((cat) {
+            return ListTile(
+              leading: const Icon(Icons.pets),
+              title: Text(cat),
+              subtitle: Text('Gatito problemático'),
+              trailing: const Icon(Icons.arrow_forward_ios_outlined),
+              tileColor: Colors.blue,
+              textColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
-
+            );
+          }),
         ],
       ),
     );
   }
 
-  Widget crearTile(String nombre, String subtitulo, Color colorTile, Color colorText ){
+  Widget crearTile(
+    String nombre,
+    String imagen,
+    Color colorTile,
+    Color colorText,
+  ) {
     final listTile = ListTile(
-                    leading: const Icon(Icons.pets),
-                    title: Text(nombre),
-                    subtitle: Text(subtitulo),
-                    trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                    tileColor: colorTile,
-                    textColor: colorText,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                  ),
-                );
-    final espacio = SizedBox(height: 6,);
-    return Column(
-      children:[
-        listTile,
-        espacio,
-      ]
+      leading: Image.asset(imagen, width: 50, height: 50, fit: BoxFit.cover),
+      title: Text(nombre),
+      subtitle: Text('Un lindo perrito'),
+      trailing: const Icon(Icons.arrow_forward_ios_outlined),
+      tileColor: colorTile,
+      textColor: colorText,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     );
+    final espacio = SizedBox(height: 6);
+    return Column(children: [listTile, espacio]);
   }
-
 }
