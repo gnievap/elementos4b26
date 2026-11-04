@@ -64,4 +64,26 @@ class Screen4 extends StatelessWidget {
       ),
     );
   }
+
+  Widget crearTile(String nombre, String subtitulo, Color colorTile, Color colorText ){
+    final listTile = ListTile(
+                    leading: const Icon(Icons.pets),
+                    title: Text(nombre),
+                    subtitle: Text(subtitulo),
+                    trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                    tileColor: colorTile,
+                    textColor: colorText,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                  ),
+                );
+    final espacio = SizedBox(height: 6,);
+    return Column(
+      children:[
+        listTile,
+        espacio,
+      ]
+    );
+  }
+
 }
