@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proyecto1/screens/screen2.dart';
 import 'package:proyecto1/screens/screen3.dart';
 import 'package:proyecto1/screens/screen4.dart';
+import 'package:proyecto1/screens/screen5.dart';
 
 class Screen1 extends StatelessWidget {
   const Screen1({super.key});
@@ -40,6 +41,13 @@ class Screen1 extends StatelessWidget {
               Screen4(),
               context,
             ),
+            SizedBox(height: 20),
+            botonStf(
+              'Boton 4',
+              const Color.fromARGB(255, 239, 189, 5),
+              Screen5(),
+              context,
+            ),
           ],
         ),
       ),
@@ -50,6 +58,33 @@ class Screen1 extends StatelessWidget {
     String texto,
     Color color1,
     StatelessWidget screen,
+    BuildContext context,
+  ) {
+    return ElevatedButton(
+      onPressed: () {
+        // Abre otras pantallas  de la app
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => screen),
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        backgroundColor: color1,
+        textStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      child: Text(texto),
+    );
+  }
+
+  Widget botonStf(
+    String texto,
+    Color color1,
+    StatefulWidget screen,
     BuildContext context,
   ) {
     return ElevatedButton(

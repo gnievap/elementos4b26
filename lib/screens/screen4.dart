@@ -31,6 +31,7 @@ class Screen4 extends StatelessWidget {
         children: [
           ...perros.entries.map((perro) {
             return crearTile(
+              context,
               perro.key,
               perro.value,
               Colors.purple,
@@ -57,6 +58,7 @@ class Screen4 extends StatelessWidget {
   }
 
   Widget crearTile(
+    BuildContext context,
     String nombre,
     String imagen,
     Color colorTile,
@@ -70,8 +72,33 @@ class Screen4 extends StatelessWidget {
       tileColor: colorTile,
       textColor: colorText,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext dialogContext) {
+            return AlertDialog(
+              title: Text(nombre),
+              content: Image.asset(
+                imagen,
+                width: 250,
+                height: 250,
+                fit: BoxFit.contain,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(dialogContext);
+                  },
+                  child: const Text('Cerrar'),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
     final espacio = SizedBox(height: 6);
+
     return Column(children: [listTile, espacio]);
   }
 }
